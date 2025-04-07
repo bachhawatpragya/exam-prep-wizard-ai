@@ -102,12 +102,15 @@
     @apply bg-gradient-to-r from-exam-primary to-exam-secondary text-white p-6;
   }
   
+  /* Fix the circular reference by removing self-reference */
   .animate-gradient {
-    @apply bg-size-200 animate-gradient;
+    @apply bg-size-200;
+    animation: gradient 3s ease infinite;
   }
   
   .text-gradient {
-    @apply bg-gradient-to-r from-exam-primary via-exam-secondary to-exam-accent bg-clip-text text-transparent animate-gradient;
+    @apply bg-gradient-to-r from-exam-primary via-exam-secondary to-exam-accent bg-clip-text text-transparent;
+    animation: gradient 3s ease infinite;
   }
   
   .bg-size-200 {
@@ -137,4 +140,11 @@
   .confidence-high {
     @apply text-exam-high;
   }
+}
+
+/* Define the gradient animation keyframes separately */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
